@@ -12,7 +12,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path='/' exact element= {<Mainview/>} />
-            <Route path='/comments' element={<Comments/>} />
+            <Route path='/comments/:id' element={<Comments/>} />
           </Routes>
         </BrowserRouter>
     </div>
