@@ -1,10 +1,12 @@
 import './App.css'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function Mainview(){
     const [images, setImage] = useState()
     const [count, setCount] = useState(0)
+    const navigate = useNavigate();
 
     useEffect(() =>{
     fetch('http://localhost:5000/getGallery')
@@ -25,7 +27,7 @@ function Mainview(){
                             <a className="navbar-brand" href="/"><img src={picsum.image_url} alt="logo" style={{ width: '250px', height: '250px', padding: '20px' }} /></a>
                             <div className="row">
                                 <div className="col">
-                                <button className="iconbtn"><i class="fa fa-comments fa-3x"></i></button>
+                                <button onClick={() => navigate(`/comments/${picsum._id}`)} className="iconbtn"><i class="fa fa-comments fa-3x"></i></button>
                                 <h4>{picsum.comments.length}</h4>
                                 </div>
                                 <div className="col">
