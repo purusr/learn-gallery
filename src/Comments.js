@@ -1,10 +1,19 @@
 import axios from 'axios';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 import imgg from './pexels.jpg'
 
 function Comments (){
+  const {id} = useParams()
   const [comment, setComment] = useState();
+  const [cmntimage, setCmntimage] = useState();
 
+
+  useEffect(()=>{
+    axios.get(`http://localhost:5000/getComment/${id}`).then(res => setCmntimage(res.data))
+  }, [1])
+
+console.log(cmntimage);
   const updateComment = (id) =>{
     axios.post(`http://localhost:5000/updateComments/${id}`, {comment: comment})
   }
