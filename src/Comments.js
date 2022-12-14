@@ -9,14 +9,21 @@ function Comments (){
 
 
   useEffect(()=>{
-    axios.get(`http://localhost:5000/getComment/${id}`).then(res => setCmntimage(res.data))
+      setTimeout(()=>{
+     axios.get(`http://localhost:5000/getComment/${id}`).then(res => setCmntimage(res.data))
+  
+      }, 2000)
   }, [comment,id])
 
-console.log(comment);
+console.log(cmntimage);
   const updateComment = (id) =>{
     axios.post(`http://localhost:5000/updateComments/${id}`, {comment: comment})
+    setComment('')
   }
-    return(
+
+  return(
+  cmntimage ?
+        (
          <div className="container text-center">
             <div className="col">
               <div class=" row">
@@ -29,17 +36,21 @@ console.log(comment);
               <div className='col'>
                   <input className='form-control' onChange={(e) => setComment(e.target.value)} type='text' name='comment' value={comment}></input>
                   <br/>
-                  <button style={{ float: 'left' }} onClick={()=>{updateComment(id)}}>Comment</button>
+                  <button className='btn btn-primary' style={{ float: 'left' }} onClick={()=>{updateComment(id)}}>Comment</button>
               </div>
             </div>
             <br/>
             {cmntimage && cmntimage.comments.map( (cmntdata) =>
             <div className='row text-start'>
-                <p> {cmntdata}</p>
+                <p> - {cmntdata}</p>
+                <hr/>
             </div>
             )}
         </div>
-    )
+    ) : (
+      <h1 className='text-center'>Loading</h1>
+  )  
+  )
 }
 
 export default Comments
