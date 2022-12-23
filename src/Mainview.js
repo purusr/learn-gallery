@@ -2,22 +2,31 @@ import './App.css'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Mainview(){
     const [images, setImage] = useState()
     const [count, setCount] = useState(0)
     const navigate = useNavigate();
+    const user = localStorage.getItem('galleryProfile')
 
     useEffect(() =>{
     fetch('http://localhost:5000/getGallery')
     .then(res => res.json())
-    .then(d=> setImage(d))
+    .then(d=>{
+         setImage(d);
+        //  localStorage.setItem('imagedata', JSON.stringify(d))
+        })
     },[count])
 
     const updateLikes = (id) => {
+        if(!user){
+            toast.error('Please login to Like and Comment')
+        }
        axios.post(`http://localhost:5000/updateLikes/${id}`)
        setCount(count+1)
     }
+    
     return(
         <div className="container text-center">
             <div className="row">
@@ -40,6 +49,7 @@ function Mainview(){
                 })
                 }
             </div>
+            <ToastContainer />
         </div>
     )
 }
