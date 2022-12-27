@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import logo192 from './logo192.png'
-const Header = () => { 
+const Header = ({isuser}) => { 
     const [loggeduser, setLoggeduser] = useState()
     useEffect(() =>{
     setLoggeduser(localStorage.getItem('galleryProfile'))
@@ -16,7 +16,7 @@ const Header = () => {
                 Gallery App
                 </a>
                 <div style={{ display: 'flex', justifyContent: 'space-around'}}>
-                {!loggeduser ?
+                {!loggeduser & !isuser ?
                 <>
                 <a href='/signin'><button className='btn btn-light ' style={{padding:'5px'}}>Login</button></a>
                 </>
