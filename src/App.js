@@ -10,7 +10,6 @@ function App() {
 
   return (
     <div className='container-fluid'>
-      <Header />
         <BrowserRouter>
           <Routes>
             <Route path='/' exact element= {<Mainview/>} />
