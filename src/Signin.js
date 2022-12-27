@@ -3,6 +3,7 @@ import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import Header from './Header';
 
 const Signin = ()=>{
 
@@ -31,6 +32,8 @@ const handleSubmitLogin= (e)=>{
     setLoginPassword('')
 }
     return(
+        <>
+        <Header isuser={user ? true : false}/>
         <div className="container text-center">
             <ToastContainer/>
         <div style={{ padding: '50px' }}>
@@ -51,6 +54,7 @@ const handleSubmitLogin= (e)=>{
         </form>
         </div>
         </div>
+        </>
     )
 }
 
