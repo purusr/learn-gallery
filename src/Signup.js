@@ -2,6 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Header from './Header';
 
 const Signup = ()=>{
     const [firstname, setFirstname] = useState()
@@ -25,6 +26,8 @@ const Signup = ()=>{
         setPassword2('')
     }
     return(
+        <>
+        <Header/>
         <div className="container text-center">
             <ToastContainer/>
         <div style={{ padding: '50px' }}>
@@ -53,6 +56,7 @@ const Signup = ()=>{
         </form>
         </div>
         </div>
+        </>
     )
 }
 
