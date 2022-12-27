@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import Header from './Header';
 
 function Mainview(){
     const [images, setImage] = useState()
@@ -28,6 +29,8 @@ function Mainview(){
     }
     
     return(
+        <>
+        <Header/>
         <div className="container text-center">
             <div className="row">
                 {images && images.map(picsum => {
@@ -51,6 +54,7 @@ function Mainview(){
             </div>
             <ToastContainer />
         </div>
+    </>
     )
 }
 
